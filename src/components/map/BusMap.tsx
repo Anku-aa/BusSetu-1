@@ -19,8 +19,8 @@ import L from "leaflet";
 const DEFAULT_CENTER: [number, number] = [25.35, 82.1];
 const DEFAULT_ZOOM = 9;
 
-const LIGHT_TILES = "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
-const DARK_TILES = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+const LIGHT_TILES = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const DARK_TILES = LIGHT_TILES;
 const SATELLITE_TILES =
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
@@ -305,10 +305,10 @@ export function BusMap() {
         <TileLayer
           key={`${baseLayer}-${darkMode ? "d" : "l"}`}
           attribution={
-            isSatellite ? "Tiles &copy; Esri" : "&copy; OpenStreetMap contributors &copy; CARTO"
+            isSatellite ? "Tiles &copy; Esri" : "&copy; OpenStreetMap contributors"
           }
           url={isSatellite ? SATELLITE_TILES : darkMode ? DARK_TILES : LIGHT_TILES}
-          subdomains={isSatellite ? [] : ["a", "b", "c", "d"]}
+          subdomains={isSatellite ? [] : ["a", "b", "c"]}
         />
 
         {/* All routes shown faintly — act as the "trail" behind moving buses. */}
